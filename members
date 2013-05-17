@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+# -*-Ruby-*-
+
+require_relative 'lib/clean'
+require_relative 'lib/prepare'
+require_relative 'lib/show'
+require_relative 'lib/import'
+require_relative 'lib/remove'
+
+case ARGV[0]
+when "clean"
+  input  = ARGV[1]
+  output = ARGV[2]
+  email  = ARGV[3]
+  puts "Cleaning #{input} to #{output}, replacing email with #{email}"
+  clean(input, output, email)
+when "prepare"
+  input  = ARGV[1]
+  output = ARGV[2]
+  puts "Preparing #{input} to #{output}"
+  prepare(input, output)
+when "import"
+  input    = ARGV[1]
+  host     = ARGV[2]
+  user     = ARGV[3]
+  password = ARGV[4]
+  database = ARGV[5]
+  puts "Importing #{input} to #{database} on #{host}"
+  import(input, host, user, password, database)
+when "show"
+  input = ARGV[1]
+  field = ARGV[2]
+  puts "Reading #{input} for unique values of #{field}"
+  show(input, field)
+when "remove"
+  limit    = ARGV[1]
+  host     = ARGV[2]
+  user     = ARGV[3]
+  password = ARGV[4]
+  database = ARGV[5]
+  puts "Deleting users with id > #{limit} from #{database} on #{host}"
+  remove(limit, host, user, password, database)
+else
+  puts "Usage: members command [options ...]"
+  puts ""
+  puts "Command can be one of:"
+  puts "  clean input output email       Clean email addresses in input, writing to output"
+  puts "  prepare input output           Prepare input for import, writing to output"
+  puts "  import input host user pwd db  Import input to database"
+  puts "  show input field               Show all variations on field in input"
+  puts "  remove limit host user pwd db  Remove users with id > limit from database"
+end
