@@ -69,7 +69,7 @@ def prepare(input, output)
 
   File.open(output, 'w') do |file|
     CSV.foreach(input, { col_sep: "\t", headers: true, return_headers: false, quote_char: "\x00"}) do |row|
-      output_row = (fields.map {|f| encode(eval(f, row)) }).to_csv({ quote_char: "\x00", force_quotes: false })
+      output_row = (fields.map {|f| encode(eval(f, row)) }).to_csv({ quote_char: "\x00", force_quotes: false, col_sep: "\t" })
       file.write output_row
     end
   end
