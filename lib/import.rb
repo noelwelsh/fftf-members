@@ -6,7 +6,7 @@ def import(input, host, user, password, database)#
   }
 
   cmd =
-  "mysqlimport --fields-terminated-by='\t' --fields-enclosed-by='\"' --verbose=true --compress=true --local=true --host=#{host} --user=#{user} --password=#{password} #{database} #{input}"
+  "mysqlimport --fields-terminated-by='\\t' --fields-enclosed-by='\"' --verbose=true --compress=true --local=true --host=#{host} --user=#{user} --password=#{password} #{database} #{input}"
 
   # mysqlimport can use a compressed protocol and have a nice summary
   # report. However it doesn't report details on errors like executing
