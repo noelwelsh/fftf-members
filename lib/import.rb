@@ -13,7 +13,7 @@ def import(input, host, user, password, database)#
   # a load data command can. So use the below if you want that
   # information
   #
-  #"mysql --host=#{host} --user=#{user} --password=#{password} --execute='load data local infile \"users.csv\" into table users fields terminated by \",\" enclosed by \"\\\"\"; show warnings;' #{database}"
+  #"mysql --host=#{host} --user=#{user} --password=#{password} --execute='load data local infile \"users.csv\" into table users fields terminated by \"\\t\" optionally enclosed by \"\\\"\"; show warnings;' #{database}"
 
 
   puts "Running #{cmd}"
